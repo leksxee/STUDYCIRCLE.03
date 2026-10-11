@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import { adminFetch } from '../utils/adminApi';
 
-const API = 'http://https://studycircle-03.onrender.com';
+const API = 'https://studycircle-03.onrender.com';
 
 // ---------- static config ----------
 const SERIES = [

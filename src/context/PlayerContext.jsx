@@ -114,7 +114,7 @@ export function PlayerProvider({ children }) {
     if (!email) return;
 
     try {
-      const response = await fetch('http://https://studycircle-03.onrender.com/api/update-progress', {
+      const response = await fetch('https://studycircle-03.onrender.com/api/update-progress', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, earnedXP }),
