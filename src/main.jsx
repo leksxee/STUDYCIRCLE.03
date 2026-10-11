@@ -46,7 +46,7 @@ createRoot(document.getElementById('root')).render(
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       <PlayerProvider>
         <LoadingProvider>
-          <BrowserRouter basename={import.meta.env.DEV ? '/' : '/STUDYCIRCLE.03/'}>
+          <BrowserRouter>
             <Routes>
               <Route path="/" element={<App />} />
               <Route path="/auth" element={<Auth />} />
