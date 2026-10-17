@@ -1,4 +1,3 @@
-// src/pages/UserProfile.jsx
 import React, { useState, useEffect } from 'react';
 import { usePlayer } from '../context/PlayerContext';
 import CustomAvatar from '../components/CustomAvatar';
@@ -93,26 +92,9 @@ export default function UserProfile() {
   const totalCoins = player?.coins ?? 0;
   const xpPercent = Math.min(100, Math.max(0, ((player?.currentXP || 0) / (player?.maxXP || 100)) * 100));
 
-  // Get the badges the user has actually claimed, from the account's inventory
+  // Get the badges the user has actually claimed, strictly from the database profile inventory
   const getUnlockedBadges = () => {
-    let inventory = player?.inventory || [];
-
-    // Fallback: only while the database profile is still loading.
-    // Once it has loaded, an empty inventory really means nothing was claimed,
-    // so we must not fall back to a stale cached copy.
-    if (!profile && inventory.length === 0 && userEmail) {
-      try {
-        const savedUserJson = localStorage.getItem(`user_${userEmail}`);
-        if (savedUserJson) {
-          const parsedUser = JSON.parse(savedUserJson);
-          if (Array.isArray(parsedUser.inventory)) {
-            inventory = parsedUser.inventory;
-          }
-        }
-      } catch (e) {
-        console.error("Error reading inventory from localStorage:", e);
-      }
-    }
+    const inventory = player?.inventory || [];
 
     // Start empty: a badge only shows once its "level_N_reward" was claimed.
     const claimedLevels = [];

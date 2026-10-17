@@ -437,17 +437,27 @@ export default function UserHomepage({ isMultiplayer: propIsMultiplayer = false 
       if (!audio) {
         audio = new Audio();
         audio.autoplay = true;
+        audio.muted = false; // Siguraduhing hindi naka-mute
         remoteAudiosRef.current[remoteName] = audio;
       }
-      audio.srcObject = e.streams[0] || new MediaStream([e.track]);
-      audio.play().catch(() => {
-        // browser blocked autoplay: start it on the next click anywhere
-        const resume = () => {
-          audio.play().catch(() => {});
-          document.removeEventListener('click', resume);
-        };
-        document.addEventListener('click', resume);
-      });
+      
+      const stream = e.streams[0] || new MediaStream([e.track]);
+      audio.srcObject = stream;
+      
+      // Subukang i-play agad ang audio
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Kapag hinarangan ng browser ang autoplay, hihintayin ang unang click ng user sa screen
+          const resume = () => {
+            audio.play().catch((err) => console.error("Audio play failed after click:", err));
+            document.removeEventListener('click', resume);
+            document.removeEventListener('keydown', resume);
+          };
+          document.addEventListener('click', resume);
+          document.addEventListener('keydown', resume);
+        });
+      }
     };
 
     pc.onconnectionstatechange = () => {
