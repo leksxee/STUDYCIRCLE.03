@@ -58,7 +58,7 @@ export default function KitsuAI() {
     const fetchUserTools = async () => {
       if (!playerData?.email) return;
       try {
-        const response = await fetch(`http://localhost:5000/api/get-user-tools?email=${encodeURIComponent(playerData.email)}`);
+        const response = await fetch(`https://studycircle-03.onrender.com/api/get-user-tools?email=${encodeURIComponent(playerData.email)}`);
         const data = await response.json();
         if (response.ok && data.success && Array.isArray(data.inventory)) {
           const dbSavedTools = data.inventory
@@ -120,7 +120,7 @@ export default function KitsuAI() {
     setIsAiThinking(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/kitsu-chat', {
+      const response = await fetch('https://studycircle-03.onrender.com/api/kitsu-chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: userText }),
@@ -216,7 +216,7 @@ export default function KitsuAI() {
       formData.append('toolType', currentActiveTool);
       formData.append('file', targetFileObj);
 
-      const response = await fetch('http://localhost:5000/api/generate-ai-tool', {
+      const response = await fetch('https://studycircle-03.onrender.com/api/generate-ai-tool', {
         method: 'POST',
         body: formData,
       });
@@ -304,7 +304,7 @@ export default function KitsuAI() {
     setGeneratedItems(updatedItems);
 
     try {
-      await fetch('http://localhost:5000/api/save-user-tool', {
+      await fetch('https://studycircle-03.onrender.com/api/save-user-tool', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

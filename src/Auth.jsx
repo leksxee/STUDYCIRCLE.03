@@ -229,7 +229,7 @@ export default function Auth() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/google-signup', {
+      const response = await fetch('https://studycircle-03.onrender.com/api/google-signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ access_token: credentialResponse.access_token }),
@@ -317,7 +317,7 @@ export default function Auth() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/google-signup', {
+      const response = await fetch('https://studycircle-03.onrender.com/api/google-signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -390,7 +390,7 @@ export default function Auth() {
 
     // Professor / IT admin login. Checked first; if the email isn't an admin, we fall through to student login.
     try {
-      const adminRes = await fetch('http://localhost:5000/api/itadmin/login', {
+      const adminRes = await fetch('https://studycircle-03.onrender.com/api/itadmin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: emailVal, password: passwordVal }),
@@ -423,7 +423,7 @@ export default function Auth() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch('https://studycircle-03.onrender.com/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: emailVal, password: passwordVal }),
@@ -494,7 +494,7 @@ export default function Auth() {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/itadmin/change-password', {
+      const res = await fetch('https://studycircle-03.onrender.com/api/itadmin/change-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -554,7 +554,7 @@ export default function Auth() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/signup', {
+      const response = await fetch('https://studycircle-03.onrender.com/api/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -610,7 +610,7 @@ export default function Auth() {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5000/api/signup/verify', {
+      const response = await fetch('https://studycircle-03.onrender.com/api/signup/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: verifyPending.email, code: verifyCode }),
@@ -655,7 +655,7 @@ export default function Auth() {
   const handleResendCode = async () => {
     if (resendIn > 0 || !verifyPending) return;
     try {
-      const response = await fetch('http://localhost:5000/api/signup/resend', {
+      const response = await fetch('https://studycircle-03.onrender.com/api/signup/resend', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: verifyPending.email }),
@@ -684,7 +684,7 @@ export default function Auth() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/forgot-password', {
+      const response = await fetch('https://studycircle-03.onrender.com/api/forgot-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: trimmedEmail }),
